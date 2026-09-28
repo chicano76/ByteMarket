@@ -1,0 +1,79 @@
+.menu {
+  background-color: #20232a;
+  padding: 1.2rem 2rem;
+}
+
+.menu ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.menu a {
+  color: #6291f8;
+  text-decoration: none;
+  font-size: 1.35rem;
+  font-weight: 500;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  transition: all 0.25s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-cart-menu {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #28a745;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 14px;
+  margin-left: 4px;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.45);
+  animation: popIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  .cart-svg-icon {
+    flex-shrink: 0;
+  }
+}
+
+@keyframes popIn {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.menu a:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.menu a.activo {
+  font-weight: bold;
+  color: #ffffff;
+  border-bottom: 3px solid #6291f8;
+}
+
+@media (max-width: 600px) {
+  .menu {
+    padding: 0.8rem 1rem;
+  }
+
+  .menu ul {
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .menu a {
+    font-size: 1.1rem;
+    padding: 0.4rem 0.6rem;
+  }
+}
+

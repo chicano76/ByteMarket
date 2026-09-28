@@ -1,0 +1,89 @@
+<h1>Administrador de productos</h1>
+<form [formGroup]="formulario" (ngSubmit)="submit()" novalidate class="">
+  <p class="form-subtitulo">Puedes añadir tus propios productos en el siguiente formulario:</p>
+  <div class="campo">
+    <label for="nombreProducto">Nombre</label>
+    <input id="nombreProducto" type="text" formControlName="nombreProducto" />
+    <div class="error" *ngIf="formulario.get('nombreProducto')?.touched && formulario.get('nombreProducto')?.invalid">
+      <small
+        *ngIf="formulario.get('nombreProducto')?.errors?.['required'] || formulario.get('nombreProducto')?.errors?.['pattern']">El
+        nombre es obligatorio (debe contener al menos una palabra o carácter).</small>
+    </div>
+  </div>
+  <div class="campo">
+    <label for="precioProducto">Precio</label>
+    <input id="precioProducto" type="number" formControlName="precioProducto" />
+    <div class="error" *ngIf="formulario.get('precioProducto')?.touched && formulario.get('precioProducto')?.invalid">
+      <small *ngIf="formulario.get('precioProducto')?.errors?.['required']">El precio es obligatorio.</small>
+      <small *ngIf="formulario.get('precioProducto')?.errors?.['min']">El precio tiene que ser mayor que 0.</small>
+    </div>
+  </div>
+  <div class="campo">
+    <label for="stockProducto">Stock</label>
+    <input id="stockProducto" type="number" formControlName="stockProducto" />
+    <div class="error" *ngIf="formulario.get('stockProducto')?.touched && formulario.get('stockProducto')?.invalid">
+      <small *ngIf="formulario.get('stockProducto')?.errors?.['required']">El stock es obligatorio.</small>
+      <small *ngIf="formulario.get('stockProducto')?.errors?.['min']">El stock tiene que ser mayor o igual que
+        0.</small>
+    </div>
+  </div>
+  <div class="campo">
+    <label for="imagenUrl">URL de la Imagen (opcional)</label>
+    <input id="imagenUrl" type="text" formControlName="imagenUrl" placeholder="https://ejemplo.com/imagen.jpg" />
+  </div>
+  <div class="campo">
+    <label for="descripcionProducto">Descripción / Características (opcional)</label>
+    <textarea id="descripcionProducto" formControlName="descripcionProducto" rows="3"
+      placeholder="Escribe las características del producto aquí..."></textarea>
+  </div>
+  <div class="mensaje-exito" *ngIf="mensajeExito">
+    ✓ {{ mensajeExito }}
+  </div>
+  <div class="form-acciones">
+    <button type="submit" [disabled]="formulario.invalid">Añadir producto</button>
+    <button type="button" class="btn-reset" [disabled]="isFormEmpty" (click)="limpiarFormulario()">Limpiar Formulario</button>
+  </div>
+</form>
+<hr>
+<h1>Lista actual de productos</h1>
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>Imagen</th>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Stock</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of dataPoducList; let i = index">
+      <td>
+        <img [src]="p.imagenUrl || defaultImg" (error)="onImgError($event)" (click)="verImagen(p.imagenUrl)"
+          [alt]="p.nombre" class="thumb-img clickeable" title="Haz clic para ampliar" />
+      </td>
+      <td>{{ p.nombre }}</td>
+      <td>{{ p.precio }} €</td>
+      <td>
+        <div class="stock-controls">
+          <button type="button" class="btn-stock btn-restar" (click)="decrementStock(p)" [disabled]="p.stock <= 0"
+            title="Restar 1 unidad">-</button>
+          <span class="stock-num">{{ p.stock }} Uds.</span>
+          <button type="button" class="btn-stock btn-sumar" (click)="incrementStock(p)"
+            title="Añadir 1 unidad">+</button>
+        </div>
+      </td>
+      <td>
+        <button type="button" (click)="delete(p)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Visor de Imagen Ampliada (Lightbox) -->
+<div class="modal-backdrop modal-lightbox" *ngIf="imagenAmpliadaUrl" (click)="cerrarImagen()">
+  <div class="lightbox-content" (click)="$event.stopPropagation()">
+    <button type="button" class="btn-cerrar-lightbox" (click)="cerrarImagen()">✕</button>
+    <img [src]="imagenAmpliadaUrl" (error)="onImgError($event)" alt="Imagen ampliada" />
+  </div>
+</div>

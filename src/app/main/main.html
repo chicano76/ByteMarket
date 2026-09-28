@@ -1,0 +1,11 @@
+<div class="wrapper">
+    <div class="panel">
+        <app-listado-productos [listaProductos]="dataProducList"(addCarrito)="addToCart ($event)"></app-listado-productos>
+    </div> <div class="panel">
+        <app-carrito-compra [listaCarrito]="carrito"(removeCarrito)="removeFromCart($event)"></app-carrito-compra>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,67 @@
+<div class="wrapper">
+  <h1 class="title">Listado de productos</h1>
+
+  <ng-container *ngIf="listaProductos.length > 0; else emptyList">
+    
+    <div *ngFor="let p of listaProductos; let i = index " class="productos-container">
+      <div class="tarjeta" [ngClass]="{'sin-stock': p.stock === 0}">
+        <div class="img-wrapper" (click)="verImagen(p.imagenUrl)" title="Haz clic para ver la imagen ampliada">
+          <img [src]="p.imagenUrl || defaultImg" (error)="onImgError($event)" [alt]="p.nombre" class="producto-img clickeable" />
+        </div>
+        <div class="info">
+          <h2 class="nombre">{{p.nombre}}</h2>
+          <p class="precio">{{p.precio | currency:'EUR':'symbol':'1.2-2' }}</p>
+          <span class="stock">{{p.stock}} Uds.</span>
+        </div>
+        <div class="acciones-btn">
+          <button type="button" class="btn-mas-info" (click)="verDetalle(p)">+ Información</button>
+          <button type="button" (click)="clickAddCarrito(p)" [disabled]="p.stock === 0">Añadir al carrito</button>
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+
+  <ng-template #emptyList>
+    <h4>Sin productos disponibles.</h4>
+  </ng-template>
+
+  <!-- Globo / Modal de Información Completa del Producto -->
+  <div class="modal-backdrop" *ngIf="productoDetalle" (click)="cerrarDetalle()">
+    <div class="modal-globo" (click)="$event.stopPropagation()">
+      <button type="button" class="btn-cerrar" (click)="cerrarDetalle()">✕</button>
+      <div class="modal-header">
+        <h2>Información del Producto</h2>
+      </div>
+      <div class="modal-body">
+        <div class="globo-img-container" (click)="verImagen(productoDetalle.imagenUrl)" title="Haz clic para ver la imagen a pantalla completa">
+          <img [src]="productoDetalle.imagenUrl || defaultImg" (error)="onImgError($event)" [alt]="productoDetalle.nombre" />
+          <span class="badge-ver-foto">Ver Foto Completa</span>
+        </div>
+        <div class="globo-info">
+          <p><strong>ID Referencia:</strong> #{{ productoDetalle.id }}</p>
+          <p><strong>Nombre:</strong> {{ productoDetalle.nombre }}</p>
+          <p><strong>Precio:</strong> {{ productoDetalle.precio | currency:'EUR':'symbol':'1.2-2' }}</p>
+          <p><strong>Stock Disponible:</strong> 
+            <span [ngClass]="{'texto-agotado': productoDetalle.stock === 0, 'texto-disponible': productoDetalle.stock > 0}">
+              {{ productoDetalle.stock > 0 ? productoDetalle.stock + ' Unidades' : 'Agotado' }}
+            </span>
+          </p>
+        </div>
+        <div class="globo-descripcion">
+          <h3>Descripción y Características</h3>
+          <p>{{ productoDetalle.descripcion || 'Sin descripción disponible para este producto.' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Visor de Imagen Ampliada (Lightbox) -->
+  <div class="modal-backdrop modal-lightbox" *ngIf="imagenAmpliadaUrl" (click)="cerrarImagen()">
+    <div class="lightbox-content" (click)="$event.stopPropagation()">
+      <button type="button" class="btn-cerrar-lightbox" (click)="cerrarImagen()">✕</button>
+      <img [src]="imagenAmpliadaUrl" (error)="onImgError($event)" alt="Imagen ampliada" />
+    </div>
+  </div>
+
+</div>

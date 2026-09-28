@@ -1,0 +1,326 @@
+.wrapper {
+  width: 100%;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  font-size: 1.9rem;
+  margin-bottom: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #1e293b;
+
+  .title-cart-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6291f8 0%, #3b82f6 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(98, 145, 248, 0.35);
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  .badge-total-articulos {
+    font-size: 0.85rem;
+    font-weight: 700;
+    background: #28a745;
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.35);
+    animation: fadeIn 0.25s ease-out;
+  }
+}
+
+.empty-cart-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 20px;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 16px;
+  text-align: center;
+  margin-top: 10px;
+  animation: fadeIn 0.3s ease-in-out;
+
+  .empty-cart-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #eef2ff;
+    color: #6291f8;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 14px rgba(98, 145, 248, 0.15);
+  }
+
+  .empty-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 8px 0;
+  }
+
+  .empty-desc {
+    font-size: 0.92rem;
+    color: #64748b;
+    max-width: 280px;
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;           
+}
+
+.carrito-container {
+  display: flex;
+  justify-content: flex-start; 
+  width: 100%;
+  margin-bottom: 0 !important;
+}
+
+.tarjeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+  width: 100%;        
+  max-width: 100%;    
+  min-width: 0;       
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(2, 6, 23, 0.6);
+}
+
+.img-wrapper {
+  width: 55px;
+  height: 55px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.producto-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info {
+  flex: 1;
+  min-width: 0; 
+}
+
+.nombre {
+  margin: 0;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+button {
+  padding: 0.45rem 0.9rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #ff4d4d;
+  color: #000;
+  font-weight: 600;
+  transition: background 0.2s ease;
+  flex-shrink: 0; 
+}
+
+button:hover {
+  background: #dc3545;
+  color: #ffffff;
+}
+
+.total-carrito {
+  margin-top: 1rem;
+  padding: 1rem;
+  text-align: right;
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+
+  h3 {
+    margin: 0;
+    font-size: 1.4rem;
+
+    span {
+      color: #6291f8;
+      font-weight: bold;
+    }
+  }
+}
+
+.acciones-tramitar {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-comprar {
+  background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+  color: #ffffff !important;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(40, 167, 69, 0.4);
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: linear-gradient(135deg, #218838 0%, #1e7e34 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(40, 167, 69, 0.55);
+  }
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-exito-card {
+  position: relative;
+  background: #ffffff;
+  color: #1e293b;
+  padding: 32px 28px;
+  border-radius: 16px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  animation: popModal 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  .btn-cerrar-modal {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 4px;
+
+    &:hover {
+      color: #0f172a;
+    }
+  }
+
+  .modal-icono-exito {
+    font-size: 3.2rem;
+    margin-bottom: 12px;
+  }
+
+  .modal-exito-titulo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #155724;
+    margin: 0 0 10px 0;
+  }
+
+  .modal-exito-mensaje {
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+
+  .btn-aceptar-modal {
+    background: #28a745;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 10px 28px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    transition: background 0.2s ease, transform 0.15s ease;
+
+    &:hover {
+      background: #218838;
+      transform: scale(1.03);
+    }
+  }
+}
+
+@keyframes popModal {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 1.5rem;
+
+    .title-cart-icon {
+      width: 36px;
+      height: 36px;
+      svg { width: 18px; height: 18px; }
+    }
+  }
+
+  .tarjeta {
+    padding: 0.6rem 0.8rem;
+    gap: 0.6rem;
+  }
+
+  .img-wrapper {
+    width: 45px;
+    height: 45px;
+  }
+
+  .nombre {
+    font-size: 1.05rem;
+  }
+
+  .total-carrito h3 {
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,175 @@
+.main-footer {
+  margin-top: 80px;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  color: #f8fafc;
+  padding: 45px 20px 24px 20px;
+  border-top: 4px solid #6291f8;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.1);
+
+  .footer-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    text-align: center;
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+
+      &:hover {
+        transform: scale(1.1) rotate(4deg);
+        border-color: #dd0031;
+      }
+    }
+
+    .angular-logo-svg {
+      filter: drop-shadow(0 2px 6px rgba(221, 0, 49, 0.5));
+    }
+
+    .footer-text {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: #cbd5e1;
+      max-width: 680px;
+      margin: 0;
+
+      strong {
+        color: #6291f8;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .footer-author-link {
+    color: #6291f8;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease, text-decoration 0.2s ease;
+
+    &:hover {
+      color: #38bdf8;
+      text-decoration: underline;
+    }
+  }
+
+  .footer-tech {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    .tech-title {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+
+    .tech-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .tech-badge {
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 7px 16px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background-color: #94a3b8;
+        transition: background-color 0.25s ease;
+      }
+
+      &:hover {
+        transform: translateY(-2px);
+        color: #ffffff;
+      }
+
+      &.badge-angular {
+        .dot { background-color: #dd0031; }
+        &:hover {
+          background: rgba(221, 0, 49, 0.2);
+          border-color: #dd0031;
+          box-shadow: 0 0 12px rgba(221, 0, 49, 0.4);
+        }
+      }
+
+      &.badge-ts {
+        .dot { background-color: #3178c6; }
+        &:hover {
+          background: rgba(49, 120, 198, 0.2);
+          border-color: #3178c6;
+          box-shadow: 0 0 12px rgba(49, 120, 198, 0.4);
+        }
+      }
+
+      &.badge-html {
+        .dot { background-color: #e34c26; }
+        &:hover {
+          background: rgba(227, 76, 38, 0.2);
+          border-color: #e34c26;
+          box-shadow: 0 0 12px rgba(227, 76, 38, 0.4);
+        }
+      }
+
+      &.badge-reactive {
+        .dot { background-color: #d81b60; }
+        &:hover {
+          background: rgba(216, 27, 96, 0.2);
+          border-color: #d81b60;
+          box-shadow: 0 0 12px rgba(216, 27, 96, 0.4);
+        }
+      }
+    }
+  }
+
+  .footer-copyright {
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
+
+    p {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin: 0;
+
+      strong {
+        color: #94a3b8;
+      }
+    }
+  }
+}

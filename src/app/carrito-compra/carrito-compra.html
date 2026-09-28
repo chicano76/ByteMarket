@@ -1,0 +1,106 @@
+<div class="wrapper">
+  <h1 class="title">
+    <span class="title-cart-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+      </svg>
+    </span>
+    Carrito de la compra
+    <span class="badge-total-articulos" *ngIf="totalArticulos > 0">{{ totalArticulos }} Uds.</span>
+  </h1>
+
+  <div class="lista" *ngIf="listaCarrito.length > 0; else emptyList">
+
+    <div *ngFor="let item of listaCarrito" class="carrito-container">
+      <div class="tarjeta">
+        <div class="img-wrapper">
+          <img [src]="item.producto.imagenUrl || defaultImg" (error)="onImgError($event)" [alt]="item.producto.nombre"
+            class="producto-img" />
+        </div>
+        <div class="info">
+          <h2 class="nombre">{{item.producto.nombre}}</h2>
+          <p class="precio">{{item.producto.precio | currency:'EUR':'symbol':'1.2-2' }}</p>
+          <span class="cantidad">Cantidad: {{ item.cantidad}}</span>
+        </div>
+        <button (click)="clickRemoveCarrito(item.producto)">Eliminar</button>
+      </div>
+    </div>
+
+    <div class="total-carrito">
+      <h3>Total a pagar: <span>{{ total | currency:'EUR':'symbol':'1.2-2' }}</span></h3>
+      <div class="acciones-tramitar">
+        <button type="button" class="btn-comprar" (click)="tramitarPedido()">
+          Tramitar Pedido ➔
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #emptyList>
+    <div class="empty-cart-card">
+      <div class="empty-cart-icon-wrapper">
+        <svg class="empty-cart-svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1.2"></circle>
+          <circle cx="20" cy="21" r="1.2"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+      </div>
+      <h4 class="empty-title">Tu carrito está vacío</h4>
+    </div>
+  </ng-template>
+
+  <!-- Modal / Ventana Emergente de Pedido Realizado con Éxito -->
+  <div class="modal-backdrop" *ngIf="pedidoCompletadoModal" (click)="cerrarModalPedido()">
+    <div class="modal-exito-card" (click)="$event.stopPropagation()">
+      <button type="button" class="btn-cerrar-modal" (click)="cerrarModalPedido()">✕</button>
+      <div class="modal-icono-exito">
+        <svg width="84" height="84" viewBox="0 0 100 100" class="avatar-chico-svg">
+          <!-- Fondo circular -->
+          <circle cx="50" cy="50" r="48" fill="#e0f2fe" stroke="#38bdf8" stroke-width="2.5" />
+          <!-- Cuello -->
+          <path d="M43,68 L43,80 C43,82 57,82 57,80 L57,68 Z" fill="#f5c2a5" />
+          <!-- Camiseta / Hombros -->
+          <path d="M22,94 C22,78 35,74 50,74 C65,74 78,78 78,94 Z" fill="#2563eb" />
+          <!-- Cabeza / Cara -->
+          <ellipse cx="50" cy="52" rx="20" ry="24" fill="#fddcb4" />
+          <!-- Orejas -->
+          <circle cx="29" cy="52" r="4.5" fill="#f5c2a5" />
+          <circle cx="71" cy="52" r="4.5" fill="#f5c2a5" />
+          <!-- Ojos Azules -->
+          <ellipse cx="43" cy="50" rx="3.5" ry="4" fill="#ffffff" />
+          <circle cx="43" cy="50" r="2.2" fill="#0284c7" />
+          <circle cx="43.8" cy="49.2" r="0.8" fill="#ffffff" />
+          <ellipse cx="57" cy="50" rx="3.5" ry="4" fill="#ffffff" />
+          <circle cx="57" cy="50" r="2.2" fill="#0284c7" />
+          <circle cx="57.8" cy="49.2" r="0.8" fill="#ffffff" />
+          <!-- Cejas Rubias -->
+          <path d="M38,44 Q43,42 47,44" stroke="#d97706" stroke-width="1.8" stroke-linecap="round" fill="none" />
+          <path d="M53,44 Q57,42 62,44" stroke="#d97706" stroke-width="1.8" stroke-linecap="round" fill="none" />
+          <!-- Nariz -->
+          <path d="M49,53 Q50,56 52,55" stroke="#e0a080" stroke-width="1.6" stroke-linecap="round" fill="none" />
+          <!-- Sonrisa -->
+          <path d="M44,61 Q50,66 56,61" stroke="#b91c1c" stroke-width="2" stroke-linecap="round" fill="none" />
+          <!-- Pelo Rubio Corto Peinado Hacia Atrás -->
+          <path d="M29,48 C27,34 35,22 50,22 C65,22 73,34 71,48 C68,36 62,28 50,28 C38,28 32,36 29,48 Z"
+            fill="#fbbf24" />
+          <path d="M31,44 C30,30 38,20 50,20 C62,20 70,30 69,44 C67,32 60,25 50,25 C40,25 33,32 31,44 Z"
+            fill="#f59e0b" />
+          <path d="M36,25 Q50,16 64,25 Q50,20 36,25 Z" fill="#fcd34d" />
+          <path d="M40,22 Q50,15 60,22 Q50,18 40,22 Z" fill="#fef08a" />
+        </svg>
+      </div>
+      <h2 class="modal-exito-titulo">¡Pedido realizado con éxito!</h2>
+      <p class="modal-exito-mensaje">
+        Muchas gracias por tu compra. Tu pedido ha sido procesado y registrado correctamente.
+      </p>
+      <button type="button" class="btn-aceptar-modal" (click)="cerrarModalPedido()">
+        Aceptar
+      </button>
+    </div>
+  </div>
+
+</div>

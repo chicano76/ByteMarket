@@ -1,0 +1,41 @@
+/* Layout principal (1 columna: Productos arriba, Carrito abajo) */
+.wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Cada panel */
+.panel {
+  width: 100%;
+  padding: 15px;
+  border-radius: 10px;
+  min-width: 0;
+}
+
+/* Para que dentro de cada panel todo use el 100% del ancho */
+.panel app-listado-productos,
+.panel app-carrito-compra {
+  display: block;
+  width: 100%;
+}
+
+.lista {
+  gap: 24px !important;
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    padding: 10px;
+    gap: 16px;
+  }
+
+  .panel {
+    padding: 8px 4px;
+  }
+}
+
