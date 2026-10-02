@@ -37,7 +37,7 @@ Para ejecutar este proyecto en local, sigue estos pasos:
 1. Clonar el repositorio:
    ```bash
    git clone https://github.com/chicano76/ByteMarket.git
-   cd appCurso
+   cd ByteMarket
    ```
 
 2. Instalar dependencias:
